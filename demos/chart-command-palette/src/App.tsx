@@ -42,13 +42,7 @@ export default function App() {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <main
-      style={{
-        maxWidth: 900,
-        margin: "40px auto",
-        padding: "0 20px",
-      }}
-    >
+    <main className="min-h-screen flex items-center justify-center ">
       <button
         type="button"
         onClick={() => setOpen(true)}
