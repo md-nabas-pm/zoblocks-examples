@@ -2,7 +2,7 @@ import { CareTimeline } from "@/components/zoblocks/care-timeline";
 
 export default function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center p-6">
       <CareTimeline
         aria-label="Care timeline for Ada Lovelace"
         events={[]}
