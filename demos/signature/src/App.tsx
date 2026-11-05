@@ -1,23 +1,29 @@
-import { ConsentInAForm } from "./demos/ConsentInAFormDemo";
-import { KeyboardOnly } from "./demos/KeyboardOnly";
-import { CannotSign } from "./demos/CannotSign";
-import { Locked } from "./demos/Locked";
-import { AwaitingCountersignature } from "./demos/AwaitingCountersignature";
-import { Withdrawn } from "./demos/Withdrawn";
-import { ProvenanceBundle } from "./demos/ProvenanceBundle";
-import { InkInAnyTheme } from "./demos/InkInAnyTheme";
+import ConsentInsideAntdForm from "./demos/ConsentInsideAntdForm";
+import KeyboardAlone from "./demos/KeyboardAlone";
+import PatientRefusal from "./demos/PatientRefusal";
+import SubmittedFormLegible from "./demos/SubmittedFormLegible";
+import AwaitingCountersignature from "./demos/AwaitingCountersignature";
+import ConsentWithdrawn from "./demos/ConsentWithdrawn";
+import FhirBundle from "./demos/FhirBundle";
+import StoredInkAnyTheme from "./demos/StoredInkAnyTheme";
+
+const examples = [
+  ConsentInsideAntdForm,
+  KeyboardAlone,
+  PatientRefusal,
+  SubmittedFormLegible,
+  AwaitingCountersignature,
+  ConsentWithdrawn,
+  FhirBundle,
+  StoredInkAnyTheme,
+];
 
 export default function App() {
   return (
-    <main className="grid gap-4">
-      <ConsentInAForm />
-      <KeyboardOnly />
-      <CannotSign />
-      <Locked />
-      <AwaitingCountersignature />
-      <Withdrawn />
-      <ProvenanceBundle />
-      <InkInAnyTheme />
+    <main style={{ display: "grid", gap: 32, maxWidth: 760, margin: "0 auto", padding: 24 }}>
+      {examples.map((Example) => (
+        <Example key={Example.name} />
+      ))}
     </main>
   );
 }
