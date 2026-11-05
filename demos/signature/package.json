@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@zoblocks/signature": "^0.2.0",
-    "antd": "^6.6.8",
+    "antd": "^6.7.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
   },

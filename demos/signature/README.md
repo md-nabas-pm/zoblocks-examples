@@ -1,8 +1,9 @@
-# Signature examples
+# Signature Demo
 
-A standalone React + Vite page with eight Signature examples using the installed
-`@zoblocks/signature` package and Ant Design. Patient and practitioner details are
-synthetic. Each example is implemented in its own file under `src/demos`.
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/md-nabas-pm/zoblocks-examples/tree/main/demos/signature?file=src/App.tsx)
+[![Open in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/devbox/github/md-nabas-pm/zoblocks-examples/tree/main/demos/signature)
+
+A standalone React + Vite demo of the ZoBlocks `signature` component.
 
 ## Run locally
 
@@ -10,16 +11,3 @@ synthetic. Each example is implemented in its own file under `src/demos`.
 npm install
 npm run dev
 ```
-
-## Included examples
-
-1. Consent in an Ant Design form with required validation and structured submission.
-2. Keyboard-only typed signing.
-3. Declined, unable, verbal, and on-paper outcomes.
-4. A locked signed record.
-5. A pending countersignature.
-6. A withdrawn consent that retains the original record.
-7. FHIR R4 transaction bundle generation and JSON inspection.
-8. Stored ink rendered in light and dark Ant Design themes.
-
-Run `npm run build` for the available TypeScript and production build check.

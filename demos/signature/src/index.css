@@ -1,2 +1,83 @@
 @import "tailwindcss";
 @import "@zoblocks/signature/styles.css";
+
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("./fonts/instrument-sans-latin-wght.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("./fonts/jetbrains-mono-latin-wght.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+}
+
+@theme inline {
+  --color-paper: var(--site-paper);
+  --color-paper-sunk: var(--site-paper-sunk);
+  --color-rule: var(--site-rule);
+  --color-rule-strong: var(--site-rule-strong);
+  --color-ink: var(--site-ink);
+  --color-graphite: var(--site-graphite);
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+:root {
+  --site-paper: #f7f9f8;
+  --site-paper-sunk: #eef3f1;
+  --site-rule: #dde5e2;
+  --site-rule-strong: #c3d0cc;
+  --site-ink: #08110f;
+  --site-graphite: #4d5e59;
+  color-scheme: light;
+}
+
+.dark {
+  --site-paper: #080b10;
+  --site-paper-sunk: #0d1219;
+  --site-rule: #1d2733;
+  --site-rule-strong: #2c3744;
+  --site-ink: #edf2f7;
+  --site-graphite: #a2aebb;
+  color-scheme: dark;
+}
+
+.zb-stage {
+  background-color: #fff;
+}
+
+.dark .zb-stage {
+  background-color: var(--color-paper);
+}
+
+.signature-fhir-example {
+  font-feature-settings:
+    "cv05" 1,
+    "cv08" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-rule-strong) transparent;
+}
+
+.scroll-thin::-webkit-scrollbar {
+  height: 8px;
+}
+
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: var(--color-rule-strong);
+  border-radius: 999px;
+}
