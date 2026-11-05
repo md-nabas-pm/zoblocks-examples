@@ -1,9 +1,13 @@
-import { RhythmLoader } from "./components/zoblocks/rhythm-loader";
+import InsideButtonDemo from "./demos/InsideButtonDemo";
+import CadenceClampedDemo from "./demos/CadenceClampedDemo";
+import ReducedMotionDemo from "./demos/ReducedMotionDemo";
 
 export default function App() {
   return (
-    <div>
-      <RhythmLoader mode="page" label="Loading results" size="xl" showLabel />
-    </div>
+    <main className="mx-auto grid w-full max-w-5xl gap-10 px-5 py-8">
+      <InsideButtonDemo />
+      <CadenceClampedDemo />
+      <ReducedMotionDemo />
+    </main>
   );
 }
