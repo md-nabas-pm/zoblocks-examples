@@ -1,30 +1,15 @@
-import { ProvenanceChip } from "./components/zoblocks/provenance-chip";
+import { SourceTypesExample } from "./examples/01-source-types";
+import { FreshnessStatesExample } from "./examples/02-freshness-states";
+import { AiExtractedExample } from "./examples/03-ai-extracted";
 
 export default function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="flex flex-col items-start">
-        <ProvenanceChip
-          record={{
-            source: "clinic",
-            observedAt: "2026-10-05T10:00:00Z",
-            performer: {
-              display: "Dr. Smith",
-              role: "Physician",
-            },
-          }}
-          now="2026-10-05T10:00:00Z"
-        />
-
-        <ProvenanceChip
-          record={{
-            source: "device",
-            observedAt: "2026-10-01T10:00:00Z",
-            device: "Omron BP7450",
-          }}
-          now="2026-10-05T10:00:00Z"
-        />
+    <main className="min-h-screen bg-background px-4 py-10">
+      <div className="mx-auto w-full max-w-5xl space-y-12">
+        <SourceTypesExample />
+        <FreshnessStatesExample />
+        <AiExtractedExample />
       </div>
-    </div>
+    </main>
   );
 }
