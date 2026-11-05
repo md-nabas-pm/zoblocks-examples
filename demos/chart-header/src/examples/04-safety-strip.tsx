@@ -1,5 +1,6 @@
 import { ChartHeader } from "../components/zoblocks/chart-header";
 import { DEMO_PATIENT, DEMO_IDENTIFIERS } from "../data/chart-header-fixtures";
+import "@zoblocks/identity/styles.css";
 
 export function SafetyStripExample() {
   return (

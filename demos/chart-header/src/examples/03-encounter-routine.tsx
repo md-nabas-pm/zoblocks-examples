@@ -5,6 +5,7 @@ import {
   DEMO_IDENTIFIERS,
   THREE_OPEN_ENCOUNTERS,
 } from "../data/chart-header-fixtures";
+import "@zoblocks/identity/styles.css";
 
 export function EncounterRoutineExample() {
   const [selectedEncounterId] = useState<string | undefined>();

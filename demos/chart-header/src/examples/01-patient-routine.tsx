@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ChartHeader } from "../components/zoblocks/chart-header";
 import { DEMO_PATIENT, DEMO_IDENTIFIERS, DEMO_SAFETY } from "../data/chart-header-fixtures";
+import "@zoblocks/identity/styles.css";
 
 export function PatientRoutineExample() {
   const [collapsed, setCollapsed] = useState(false);
