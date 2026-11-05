@@ -1,4 +1,2 @@
 @import "tailwindcss";
-@import "../../recent-patient-stack/src/styles/zoblocks-tokens.css";
-@import "antd/dist/reset.css";
 @import "@zoblocks/signature/styles.css";
