@@ -1,47 +1,20 @@
-import { Presence, PresenceChip } from "./components/zoblocks/care-team-presence";
+import InSessionVsSignedOut from "./examples/01-in-session-vs-signed-out";
+import CoverageGap from "./examples/02-coverage-gap";
+import DoNotDisturbRedirect from "./examples/03-do-not-disturb-redirect";
+import ChartCoPresenceExample from "./examples/04-chart-co-presence";
 
 export default function App() {
-  const presenceList: Presence[] = [
-    {
-      clinician: {
-        id: "123",
-        display: "A. Vance, MD",
-        role: "Attending",
-      },
-      state: "available",
-    },
-    {
-      clinician: {
-        id: "124",
-        display: "L. Marsh, LCSW",
-        role: "Therapist",
-      },
-      state: "in-session",
-      until: "15:30",
-    },
-    {
-      clinician: {
-        id: "125",
-        display: "R. Adeyemi, MD",
-        role: "Hospitalist",
-      },
-      state: "signed-out",
-      coveredBy: {
-        id: "126",
-        display: "T.Boateng, MD",
-      },
-    },
-  ];
-
-  const serverTime = "2026-10-05T10:30:00Z";
-
   return (
-    <div className="min-h-screen flex items-center justify-center ">
-      <div className="flex flex-col gap-2">
-        {presenceList.map((presence) => (
-          <PresenceChip key={presence.clinician.id} presence={presence} now={serverTime} />
-        ))}
+    <main className="min-h-screen bg-white px-4 py-10">
+      <div className="mx-auto flex max-w-lg flex-col gap-8">
+        <InSessionVsSignedOut />
+
+        <CoverageGap />
+
+        <DoNotDisturbRedirect />
+
+        <ChartCoPresenceExample />
       </div>
-    </div>
+    </main>
   );
 }
