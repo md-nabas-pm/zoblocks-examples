@@ -1,34 +1,26 @@
-"use client";
+import * as React from "react";
+import { DataGrid, type DataGridColumn, type DataGridProps } from "@/components/zoblocks/data-grid";
+import { isGridAbsent, type GridCoverage } from "@/lib/zoblocks-grid";
+import { CASELOAD, type CaseloadRow } from "../caseload";
 
-import { useState } from "react";
+export { ABSENCE_CASELOAD, CASELOAD, type CaseloadRow } from "../caseload";
 
-import { DataGrid, type DataGridColumn } from "@/components/zoblocks/data-grid";
-
-import { CASELOAD, type CaseloadRow } from "./caseload";
-
-import { isGridAbsent, type GridDerivation, type GridSort } from "@/lib/zoblocks-grid";
-
-const DISENGAGEMENT: GridDerivation = {
-  model: "disengagement",
-  version: "v1.8",
-  validatedOn: "9,140 outpatient episodes",
-  population: "adults, English-language intake only",
-};
-
-const COVERAGE = {
+export const CAPTION =
+  "Clients on this team's caseload with a raised PHQ-9 or a recent risk screen";
+export const TITLE = "Caseload · adult outpatient";
+export const CASELOAD_COVERAGE: GridCoverage = {
   shown: CASELOAD.length,
   total: 312,
   noun: "clients on this team's caseload",
   predicate: "PHQ-9 of 10 or more, or a risk screen in the last 14 days.",
 };
 
-function phq9Band(value: number) {
-  if (value >= 20) return "severe";
-  if (value >= 15) return "mod-severe";
-  if (value >= 10) return "moderate";
-  if (value >= 5) return "mild";
-  return "minimal";
-}
+const DISENGAGEMENT = {
+  model: "disengagement",
+  version: "v1.8",
+  validatedOn: "9,140 outpatient episodes",
+  population: "adults, English-language intake only",
+};
 
 function initials(name: string) {
   return name
@@ -41,12 +33,6 @@ function initials(name: string) {
     .toUpperCase();
 }
 
-function riskColor(risk: number) {
-  if (risk >= 0.75) return "var(--zb-status-critical)";
-  if (risk >= 0.6) return "var(--zb-status-high)";
-  return "var(--zb-accent)";
-}
-
 function riskScreenStyle(value: string) {
   if (value === "Ideation with plan") {
     return {
@@ -55,7 +41,6 @@ function riskScreenStyle(value: string) {
       border: "1px solid var(--zb-status-critical-border)",
     };
   }
-
   if (value === "Ideation, no plan") {
     return {
       color: "var(--zb-swatch-1)",
@@ -63,7 +48,6 @@ function riskScreenStyle(value: string) {
       border: "1px solid var(--zb-swatch-1-border)",
     };
   }
-
   if (value === "Passive ideation") {
     return {
       color: "var(--zb-swatch-2)",
@@ -71,7 +55,6 @@ function riskScreenStyle(value: string) {
       border: "1px solid var(--zb-swatch-2-border)",
     };
   }
-
   return {
     color: "var(--zb-text-muted)",
     background: "var(--zb-bg-muted)",
@@ -79,20 +62,14 @@ function riskScreenStyle(value: string) {
   };
 }
 
-const COLUMNS: DataGridColumn<CaseloadRow>[] = [
+export const CASELOAD_COLUMNS: DataGridColumn<CaseloadRow>[] = [
   {
     key: "name",
     header: "Client",
     kind: "text",
     value: (row) => row.name,
     cell: (row) => (
-      <span
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: "0.65rem",
-        }}
-      >
+      <span style={{ display: "inline-flex", alignItems: "center", gap: "0.65rem" }}>
         <span
           aria-hidden="true"
           style={{
@@ -112,23 +89,8 @@ const COLUMNS: DataGridColumn<CaseloadRow>[] = [
         >
           {initials(row.name)}
         </span>
-
-        <span
-          style={{
-            display: "grid",
-            gap: "0.05rem",
-            minInlineSize: 0,
-          }}
-        >
-          <strong
-            style={{
-              color: "var(--zb-text)",
-              fontWeight: 600,
-            }}
-          >
-            {row.name}
-          </strong>
-
+        <span style={{ display: "grid", gap: "0.05rem", minInlineSize: 0 }}>
+          <strong style={{ color: "var(--zb-text)", fontWeight: 600 }}>{row.name}</strong>
           <span
             style={{
               color: "var(--zb-text-muted)",
@@ -149,16 +111,9 @@ const COLUMNS: DataGridColumn<CaseloadRow>[] = [
     kind: "measure",
     value: (row) => row.phq9,
     cell: (row) => {
-      if (isGridAbsent(row.phq9)) {
-        return <span>{row.phq9.absent}</span>;
-      }
-
-      if (typeof row.phq9 !== "number") {
-        return null;
-      }
-
+      if (isGridAbsent(row.phq9)) return <span>{row.phq9.absent}</span>;
+      if (typeof row.phq9 !== "number") return null;
       const change = row.previousPhq9 === undefined ? null : row.phq9 - row.previousPhq9;
-
       return (
         <span
           style={{
@@ -172,22 +127,12 @@ const COLUMNS: DataGridColumn<CaseloadRow>[] = [
             style={{
               fontSize: "var(--zb-text-md)",
               fontWeight: 700,
-              color: row.phq9 >= 20 ? "var(--zb-status-critical)" : "var(--zb-text)",
+              color: "var(--zb-text)",
               fontVariantNumeric: "tabular-nums",
             }}
           >
             {row.phq9}
           </strong>
-
-          <span
-            style={{
-              color: "var(--zb-text-muted)",
-              fontSize: "var(--zb-text-xs)",
-            }}
-          >
-            {phq9Band(row.phq9)}
-          </span>
-
           {change !== null && change !== 0 ? (
             <span
               aria-label={`${Math.abs(change)} point ${change > 0 ? "increase" : "decrease"}`}
@@ -212,16 +157,9 @@ const COLUMNS: DataGridColumn<CaseloadRow>[] = [
     kind: "status",
     value: (row) => row.cssrs,
     cell: (row) => {
-      if (isGridAbsent(row.cssrs)) {
-        return <span>{row.cssrs.absent}</span>;
-      }
-
-      if (typeof row.cssrs !== "string") {
-        return null;
-      }
-
+      if (isGridAbsent(row.cssrs)) return <span>{row.cssrs.absent}</span>;
+      if (typeof row.cssrs !== "string") return null;
       const style = riskScreenStyle(row.cssrs);
-
       return (
         <span
           style={{
@@ -274,11 +212,10 @@ const COLUMNS: DataGridColumn<CaseloadRow>[] = [
               inlineSize: `${Math.round(row.risk * 100)}%`,
               blockSize: "100%",
               borderRadius: "inherit",
-              background: riskColor(row.risk),
+              background: "var(--zb-accent)",
             }}
           />
         </span>
-
         <span
           style={{
             minInlineSize: "2.25rem",
@@ -299,7 +236,6 @@ const COLUMNS: DataGridColumn<CaseloadRow>[] = [
     value: (row) => row.due,
     cell: (row) => {
       const urgent = row.due.startsWith("Today");
-
       return (
         <span
           style={{
@@ -315,31 +251,65 @@ const COLUMNS: DataGridColumn<CaseloadRow>[] = [
   },
 ];
 
-export default function DataGridDemo() {
-  const [sort, setSort] = useState<GridSort | null>(null);
+const WIDE_WIDTHS: Record<string, string> = {
+  name: "16rem",
+  phq9: "10rem",
+  cssrs: "17rem",
+  risk: "14rem",
+  due: "12rem",
+};
 
+export const WIDE_COLUMNS = CASELOAD_COLUMNS.map((column) => ({
+  ...column,
+  width: WIDE_WIDTHS[column.key],
+}));
+
+type RequiredGridProps = "caption" | "title" | "columns" | "rows" | "rowKey" | "coverage";
+
+export interface DemoGridProps extends Omit<DataGridProps<CaseloadRow>, RequiredGridProps> {
+  rows?: readonly CaseloadRow[];
+  coverage?: GridCoverage;
+  columns?: readonly DataGridColumn<CaseloadRow>[];
+  title?: React.ReactNode;
+}
+
+export function DemoGrid({
+  rows = CASELOAD,
+  coverage = CASELOAD_COVERAGE,
+  columns = CASELOAD_COLUMNS,
+  title = TITLE,
+  ...props
+}: DemoGridProps) {
   return (
-    <main
-      style={{
-        minBlockSize: "100vh",
-        paddingBlock: "3rem",
-        paddingInline: "1.5rem",
-        background: "var(--zb-bg-subtle)",
-        fontFamily: "var(--zb-font-sans)",
-      }}
-    >
-      <DataGrid
-        caption="Clients on this team's caseload with a raised PHQ-9 or a recent risk screen"
-        title="Caseload · PHQ-9 raised or risk screened"
-        note="14-day window"
-        columns={COLUMNS}
-        rows={CASELOAD}
-        rowKey={(row) => row.mrn}
-        coverage={COVERAGE}
-        density="comfortable"
-        sort={sort}
-        onSortChange={setSort}
-      />
-    </main>
+    <DataGrid<CaseloadRow>
+      caption={CAPTION}
+      title={title}
+      note="14-day window"
+      columns={columns}
+      rows={rows}
+      rowKey={(row) => row.mrn}
+      coverage={coverage}
+      density="comfortable"
+      {...props}
+    />
+  );
+}
+
+export function Example({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <section className="grid min-w-0 gap-3">
+      <h2 className="m-0 text-base font-semibold" style={{ color: "var(--zb-text, #0f172a)" }}>
+        {title}
+      </h2>
+      {children}
+    </section>
+  );
+}
+
+export function HostStatus({ children }: { children: React.ReactNode }) {
+  return (
+    <p role="status" className="m-0 text-xs" style={{ color: "var(--zb-text-muted, #64748b)" }}>
+      {children}
+    </p>
   );
 }
