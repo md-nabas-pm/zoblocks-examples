@@ -5,9 +5,14 @@
 
 A standalone React + Vite demo of the ZoBlocks `clinical-note` component.
 
+All note content and identities in these examples are synthetic and explicitly fictional. The examples demonstrate interface behavior only; they are not clinical advice or clinically validated workflows.
+
+The component does not persist notes. Save states are supplied by the host, and the save-state example changes that display prop locally without autosave, an offline queue, or storage. Commit callbacks are demonstrations of the callback arguments, not storage or signature services. The signed reader displays supplied attestations and addenda without verifying them or establishing legal supersession.
+
 ## Run locally
 
 ```bash
 npm install
 npm run dev
+``
 ```
