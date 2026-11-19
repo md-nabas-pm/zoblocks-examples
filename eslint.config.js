@@ -8,7 +8,11 @@ import tseslint from "typescript-eslint";
 export default defineConfig(
   {
     ignores: [
-      "**/dist",
+      "**/dist/**",
+      "**/.next/**",
+      "**/.turbo/**",
+      "**/node_modules/**",
+
       // Source copied in by `npx @zoblocks/cli add` — owned upstream, not linted here.
       "demos/*/src/components/zoblocks",
       "demos/*/src/lib",
