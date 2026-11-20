@@ -125,7 +125,6 @@ Run these from the root folder before you commit. They are the same checks that 
 ```bash
 npm run lint
 npm run format:check
-npm run check:demos
 npm run typecheck
 npm test
 npm run build:demos

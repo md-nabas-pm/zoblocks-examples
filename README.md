@@ -1,5 +1,12 @@
 # ZoBlocks Examples
 
+> **This repository is no longer maintained.** Every ZoBlocks example now lives
+> on its component's page at [zoblocks.design](https://zoblocks.design/components),
+> where each example opens on its own in StackBlitz with the current component
+> source. The examples themselves moved into the main repository, under
+> [`examples/`](https://github.com/zoworkhq/zoblocks/tree/main/examples). See
+> [DEMOS.md](DEMOS.md) for where each demo went.
+
 Small example apps (called **demos**) that show how to use [ZoBlocks](https://zoblocks.design) components.
 
 - Each demo lives in its own folder under `demos/`, for example `demos/breath-loader`.
@@ -89,7 +96,6 @@ Run these from the **root folder**.
 | `npm run build`                 | Builds the small root app                                 |
 | `npm run build:demos`           | Installs and builds every demo, like the automatic checks |
 | `npm run build:demos -- <name>` | Installs and builds one demo, e.g. `-- breath-loader`     |
-| `npm run check:demos`           | Checks that every demo is listed in `DEMOS.md`            |
 
 Inside a demo folder you mostly need `npm run dev` (start it) and `npm run build` (check that it builds).
 

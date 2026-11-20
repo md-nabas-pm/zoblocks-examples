@@ -1,2 +1,1 @@
-node scripts/check-demos-md.mjs --staged
 npx lint-staged
