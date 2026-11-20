@@ -1,5 +1,5 @@
 // Shared helpers for demo names, StackBlitz links and the DEMOS.md table.
-// Used by create-demo.mjs and check-demos-md.mjs.
+// Used by create-demo.mjs.
 
 import fs from "node:fs";
 import path from "node:path";
